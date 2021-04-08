@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.T_Lyon.dao.TeacherMapper">
+    <select id="getTeacherByID" parameterType="int" resultMap="TeacherMap">
+        select t.id tid, t.name tname, s.name sname, s.id sid
+        from mybatis.teacher t,
+             mybatis.student s
+        where t.id = #{tid};
+    </select>
+    <!--    复杂属性我们需要单独处理-->
+    <!--    对象：association-->
+    <!--    集合：collection-->
+    <!--    javaType=""指定属性的类型-->
+    <!--    集合中的泛型信息使用ofType获(List<Student>)-->
+    <resultMap id="TeacherMap" type="com.T_Lyon.pojo.Teacher">
+        <result property="id" column="tid"/>
+        <result property="name" column="tname"/>
+        <collection property="students" ofType="com.T_Lyon.pojo.Student">
+            <result property="id" column="sid"/>
+            <result property="name" column="sname"/>
+            <result property="tid" column="tid"/>
+        </collection>
+    </resultMap>
+
+    <select id="getTeacherByID2" resultMap="TeacherMap2">
+        select t.id tid, t.name tname, s.name sname, s.id sid
+        from mybatis.teacher t,
+             mybatis.student s
+        where t.id = #{tid};
+    </select>
+    <resultMap id="TeacherMap2" type="com.T_Lyon.pojo.Teacher">
+        <result property="id" column="tid"/>
+        <result property="name" column="tname"/>
+        <collection property="students" javaType="ArrayList" ofType="com.T_Lyon.pojo.Student" select="TeacherSelect" column="tid"/>
+    </resultMap>
+
+    <select id="TeacherSelect" resultType="com.T_Lyon.pojo.Student">
+        select *
+        from mybatis.student
+        where tid = #{tid};
+    </select>
+
+</mapper>

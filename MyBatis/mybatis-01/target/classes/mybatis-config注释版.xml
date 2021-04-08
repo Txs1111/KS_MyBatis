@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--配置-->
+<configuration>
+    <!-- 环境--环境默认为development，可以设置为其他的，eg：Test  -->
+    <environments default="development">
+        <!-- 环境development的情况具体如下-->
+        <environment id="development">
+            <!-- JDBC驱动-->
+            <transactionManager type="JDBC"/>
+            <!-- 数据源-->
+            <dataSource type="POOLED">
+                <!--驱动包-->
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <!--url地址，注意这里useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8这些都是必要的-->
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+                <!--账号-->
+                <property name="username" value="root"/>
+                <!--密码-->
+                <property name="password" value=""/>
+            </dataSource>
+        </environment>
+    </environments>
+<!-- mapper,Dao中每有一个Mapper.xml文件都要写进来 -->
+    <mappers>
+        <mapper resource="com/T_Lyon/dao/UserMapper.xml"/>
+    </mappers>
+</configuration>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--这里面写的是sql语句-->
+
+<!-- namespace为Mapper的接口，是唯一向外的地址 -->
+<mapper namespace="com.T_Lyon.dao.UserMapper">
+    <!-- id为接口的方法 -->
+    <!-- resultType为实体类路径 -->
+    <select id="getUserList" resultType="com.T_Lyon.pojo.User">
+    select * from user
+  </select>
+</mapper>

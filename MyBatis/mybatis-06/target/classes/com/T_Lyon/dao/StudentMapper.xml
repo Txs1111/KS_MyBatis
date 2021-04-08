@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.T_Lyon.dao.StudentMapper">
+    <!--    思路：-->
+    <!--        1.查询所有学生-->
+    <!--        2.根据学生的tid，查询对应的老师-->
+    <!--    -->
+    <!--    *注意复杂的属性需要单独处理，-->
+    <!--    对象：association-->
+    <!--    集合：collection-->
+
+    <select id="getStudent_Teacher2" resultMap="StudentTeacher2">
+        select *
+        from mybatis.student;
+    </select>
+    <resultMap id="StudentTeacher2" type="com.T_Lyon.pojo.Student">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <association property="teacher" column="tid" javaType="com.T_Lyon.pojo.Teacher" select="getTeacher2"/>
+    </resultMap>
+    <select id="getTeacher2" resultType="com.T_Lyon.pojo.Teacher">
+        select *
+        from mybatis.teacher
+        where id = #{tid}
+    </select>
+
+
+    <select id="getStudent_Teacher" resultMap="StudentTeacher">
+        select s.id sid, s.name sname, t.name tname
+        from mybatis.student s,
+             mybatis.teacher t
+        where s.tid = t.id;
+    </select>
+    <resultMap id="StudentTeacher" type="com.T_Lyon.pojo.Student">
+        <result property="id" column="sid"/>
+        <result property="name" column="sname"/>
+        <association property="teacher" javaType="com.T_Lyon.pojo.Teacher">
+            <result property="name" column="tname"/>
+        </association>
+    </resultMap>
+
+
+    <select id="getStudent_Teacher3" resultMap="StudentTeacher3">
+        select s.id sid, s.name sname, t.name tname
+        from mybatis.student s,
+             mybatis.teacher t
+        where s.tid = t.id;
+    </select>
+    <resultMap id="StudentTeacher3" type="com.T_Lyon.pojo.Student">
+        <result property="id" column="sid"/>
+        <result property="name" column="sname"/>
+        <result property="tname" column="tname"/>
+    </resultMap>
+</mapper>
