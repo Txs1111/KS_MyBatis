@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.T_Lyon.dao.UserMapper">
+
+    <!--  查询所有数据  -->
+    <select id="getListUser" resultType="com.T_Lyon.pojo.User">
+        select *
+        from mybatis.user
+    </select>
+
+    <!-- 通过ID查数据 -->
+    <select id="getListUserbyID" parameterType="int" resultType="com.T_Lyon.pojo.User">
+        select *
+        from mybatis.user
+        where id = #{id}
+    </select>
+
+    <!--################map，通过Map多个限制条件查数据#########################-->
+    <select id="getUserById2" parameterType="map" resultType="com.T_Lyon.pojo.User">
+        select *
+        from mybatis.user
+        where id = #{mapid}
+          and name = #{mapname}
+    </select>
+
+    <!--  模糊数据查询  -->
+    <select id="getUserMohu" parameterType="String" resultType="com.T_Lyon.pojo.User">
+        select *
+        from mybatis.user
+<!--    where name like "%"#{value}"%";-->
+        where name like #{value};
+    </select>
+
+    <!-- 插入数据 -->
+    <insert id="addUser" parameterType="com.T_Lyon.pojo.User">
+        insert into mybatis.user (id, name, pwd)
+        values (#{id}, #{name}, #{pwd})
+    </insert>
+
+    <!--################map，通过Map添加数据的部分字段#########################-->
+    <insert id="addUser2" parameterType="map">
+        insert into mybatis.user (id, name)
+        VALUES (#{bufenid}, #{bufenname})
+    </insert>
+
+    <!-- 更新数据 -->
+    <update id="updateUser" parameterType="com.T_Lyon.pojo.User">
+        update mybatis.user
+        set name = #{name},
+            pwd  = #{pwd}
+        where id = #{id};
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id="delectUserbyid" parameterType="int">
+        delete
+        from mybatis.user
+        where id = #{id}
+    </delete>
+
+</mapper>

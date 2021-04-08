@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.T_Lyon.dao.StudentMapper">
+
+    <select id="getTeacherByID" parameterType="int" resultType="com.T_Lyon.pojo.Teacher">
+        select t.id tid, t.name tname, s.name sname
+        from mybatis.teacher t,
+             mybatis.student s
+        where t.id = #{tid};
+    </select>
+</mapper>
