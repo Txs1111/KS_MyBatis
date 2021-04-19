@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/mybatis-01-01/src/main/java/com/T_Lyon/dao/UserMapper.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mybatis-01-01/src/test/java/com/T_Lyon/dao/UserMapperTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mybatis-02/src/main/java/com/T_Lyon/dao/UserMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatis-02/src/main/java/com/T_Lyon/utils/MyBatisUtils.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mybatis-02/src/test/java/com/T_Lyon/dao/UserMapperTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mybatis-03/src/main/java/com/T_Lyon/dao/UserMapper.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mybatis-03/src/test/java/com/T_Lyon/dao/UserMapperTest.java" charset="UTF-8" />
